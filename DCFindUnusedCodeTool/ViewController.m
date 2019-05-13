@@ -47,16 +47,20 @@
     }
     __weak typeof(self) weakSelf = self;
     [self.model searchClassWithXcodeprojFilePath:path complete:^(id allClasses, id unusedClasses) {
-        NSMutableString *allName;
+        NSMutableString *allName = [NSString stringWithFormat:@"总数：%ld个\n\n",[allClasses count]].mutableCopy;
+        NSMutableString *unusedName = [NSString stringWithFormat:@"总数：%ld个\n\n",[unusedClasses count]].mutableCopy;
+        
         [allClasses enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             [allName appendString:[NSString stringWithFormat:@"%@\n",key]];
         }];
-        weakSelf.allClassTextView.string = allName;
-        NSMutableString *unusedName;
         [unusedClasses enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             [unusedName appendString:[NSString stringWithFormat:@"%@\n",key]];
         }];
-        weakSelf.unusedClassTextView.string = unusedName;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.allClassTextView.string = allName;
+            weakSelf.unusedClassTextView.string = unusedName;
+        });
     }];
 }
 

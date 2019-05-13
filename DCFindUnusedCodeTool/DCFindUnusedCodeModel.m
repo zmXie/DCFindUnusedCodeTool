@@ -12,7 +12,7 @@
 {
     NSMutableDictionary *_allClasses;
     NSMutableDictionary *_unUsedClasses;
-    NSMutableDictionary *_usedClasses;
+    NSMutableArray *_usedClasses;
     NSDictionary *_objects;
     NSString* _projectDir;
 }
@@ -22,8 +22,8 @@
     dispatch_async(dispatch_get_global_queue(0,0), ^{
         
         //初始化数据
-        self->_allClasses = [NSMutableDictionary dictionary];
-        self->_usedClasses = [NSMutableDictionary dictionary];
+        self->_allClasses = @{}.mutableCopy;
+        self->_usedClasses = @[].mutableCopy;
         
         //获取工程文件路径，该文件包含了项目的所有配置信息
         NSString * pbxprojPath = [path stringByAppendingPathComponent:@"project.pbxproj"];
@@ -48,8 +48,8 @@
         
         //筛选无用类
         self->_unUsedClasses = [NSMutableDictionary dictionaryWithDictionary:self->_allClasses];
-        for (NSString* key in self->_usedClasses) {
-            [self->_unUsedClasses removeObjectForKey:key];
+        for (NSString* name in self->_usedClasses) {
+            [self->_unUsedClasses removeObjectForKey:name];
         }
         
         //传递结果
@@ -126,7 +126,7 @@
     NSString* mFileName = dir.lastPathComponent.stringByDeletingPathExtension;
     NSString*pathExtension = dir.pathExtension;
     //获取到所有类的集合
-    if ([pathExtension isEqualToString:@"h"] || [pathExtension isEqualToString:@"m"] || [pathExtension isEqualToString:@"mm"] || [pathExtension isEqualToString:@"xib"] || [pathExtension isEqualToString:@"storyboard"]) {
+    if ([pathExtension isEqualToString:@"h"] || [pathExtension isEqualToString:@"m"] || [pathExtension isEqualToString:@"mm"] || [pathExtension isEqualToString:@"xib"] || [pathExtension isEqualToString:@"storyboard"] || [pathExtension isEqualToString:@"pch"]) {
         //打开文件
         NSError *error;
         NSString* contentFile = [NSString stringWithContentsOfFile:dir encoding:NSUTF8StringEncoding error:&error];
@@ -154,8 +154,7 @@
             if ([fileName isEqualToString:mFileName]) { //本文件自身
                 continue;
             }
-            id usedClass = [_allClasses objectForKey:fileName];
-            _usedClasses[fileName] = usedClass;
+            [_usedClasses addObject:fileName];
         }
     }
 }

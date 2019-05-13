@@ -12,6 +12,7 @@
 		0406BF0E22852AD300181CEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0406BF0D22852AD300181CEA /* Assets.xcassets */; };
 		0406BF1122852AD300181CEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0406BF0F22852AD300181CEA /* Main.storyboard */; };
 		0406BF1422852AD300181CEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406BF1322852AD300181CEA /* main.m */; };
+		0406BF2C2285620600181CEA /* DCFindUnusedCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0406BF2B2285620600181CEA /* DCFindUnusedCodeModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,8 @@
 		0406BF1222852AD300181CEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0406BF1322852AD300181CEA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0406BF1522852AD300181CEA /* DCFindUnusedCodeTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DCFindUnusedCodeTool.entitlements; sourceTree = "<group>"; };
+		0406BF2A2285620600181CEA /* DCFindUnusedCodeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCFindUnusedCodeModel.h; sourceTree = "<group>"; };
+		0406BF2B2285620600181CEA /* DCFindUnusedCodeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCFindUnusedCodeModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +64,8 @@
 				0406BF0822852AD200181CEA /* AppDelegate.m */,
 				0406BF0A22852AD200181CEA /* ViewController.h */,
 				0406BF0B22852AD200181CEA /* ViewController.m */,
+				0406BF2A2285620600181CEA /* DCFindUnusedCodeModel.h */,
+				0406BF2B2285620600181CEA /* DCFindUnusedCodeModel.m */,
 				0406BF0D22852AD300181CEA /* Assets.xcassets */,
 				0406BF0F22852AD300181CEA /* Main.storyboard */,
 				0406BF1222852AD300181CEA /* Info.plist */,
@@ -141,6 +146,7 @@
 			files = (
 				0406BF0C22852AD200181CEA /* ViewController.m in Sources */,
 				0406BF1422852AD300181CEA /* main.m in Sources */,
+				0406BF2C2285620600181CEA /* DCFindUnusedCodeModel.m in Sources */,
 				0406BF0922852AD200181CEA /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +284,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 58AX2C9KK3;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = DCFindUnusedCodeTool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -296,6 +303,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 58AX2C9KK3;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = DCFindUnusedCodeTool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

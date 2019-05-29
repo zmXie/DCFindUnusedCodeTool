@@ -15,15 +15,17 @@
     NSMutableArray *_usedClasses;
     NSDictionary *_objects;
     NSString* _projectDir;
+    BOOL _deep;
 }
 
-- (void)searchClassWithXcodeprojFilePath:(NSString *)path complete:(void(^)(id allClasses,id unusedClasses))complete
+- (void)searchClassWithXcodeprojFilePath:(NSString *)path deep:(BOOL)deep complete:(void(^)(id allClasses,id unusedClasses))complete
 {
     dispatch_async(dispatch_get_global_queue(0,0), ^{
         
         //初始化数据
         self->_allClasses = @{}.mutableCopy;
         self->_usedClasses = @[].mutableCopy;
+        self->_deep = deep;
         
         //获取工程文件路径，该文件包含了项目的所有配置信息
         NSString * pbxprojPath = [path stringByAppendingPathComponent:@"project.pbxproj"];
@@ -164,7 +166,7 @@
     if ([pathExtension isEqualToString:@"h"] || [pathExtension isEqualToString:@"m"] || [pathExtension isEqualToString:@"mm"] || [pathExtension isEqualToString:@"pch"]) {
         //匹配import
         NSString *importRegular = [NSString stringWithFormat:@"%@|%@",@"#import.+\"",@"#import.+>"];
-        addUsedClass(importRegular,NO);
+        addUsedClass(importRegular,self->_deep);
         //匹配动态调用
         addUsedClass(@"NSStringFromClass\\(@.+?\\)",NO);
     } else if ([pathExtension isEqualToString:@"xib"] || [pathExtension isEqualToString:@"storyboard"]) {

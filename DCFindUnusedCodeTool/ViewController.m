@@ -46,7 +46,7 @@
         return;
     }
     __weak typeof(self) weakSelf = self;
-    [self.model searchClassWithXcodeprojFilePath:path complete:^(id allClasses, id unusedClasses) {
+    [self.model searchClassWithXcodeprojFilePath:path deep:NO complete:^(id allClasses, id unusedClasses) {
         NSMutableString *allName = [NSString stringWithFormat:@"总数：%ld个\n\n",[allClasses count]].mutableCopy;
         NSMutableString *unusedName = [NSString stringWithFormat:@"总数：%ld个\n\n",[unusedClasses count]].mutableCopy;
         

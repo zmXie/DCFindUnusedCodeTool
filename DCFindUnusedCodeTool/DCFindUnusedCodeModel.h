@@ -17,9 +17,10 @@
  查找无用类
 
  @param path 工程文件路径
+ @param deep 深度查询，精度更高，但是会有误伤，需要二次check
  @param complete 完成回调
  */
-- (void)searchClassWithXcodeprojFilePath:(NSString *)path complete:(void(^)(id allClasses,id unusedClasses))complete;
+- (void)searchClassWithXcodeprojFilePath:(NSString *)path deep:(BOOL)deep complete:(void(^)(id allClasses,id unusedClasses))complete;
 
 @end
 

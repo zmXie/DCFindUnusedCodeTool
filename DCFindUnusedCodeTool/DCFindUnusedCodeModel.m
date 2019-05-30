@@ -168,7 +168,7 @@
         NSString *importRegular = [NSString stringWithFormat:@"%@|%@",@"#import.+\"",@"#import.+>"];
         addUsedClass(importRegular,self->_deep);
         //匹配动态调用
-        addUsedClass(@"NSStringFromClass\\(@.+?\\)",NO);
+        addUsedClass(@"NSClassFromString\\(@.+?\\)",NO);
     } else if ([pathExtension isEqualToString:@"xib"] || [pathExtension isEqualToString:@"storyboard"]) {
         //IB文件
         addUsedClass(@"customClass=.+?\"",NO);
